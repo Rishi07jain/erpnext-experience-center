@@ -1,0 +1,220 @@
+<title>ERPNext Experience Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Try ERPNext in your browser. Pick a module and watch guided tours of real ERPNext workflows, set up for your own company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap">
+<style>
+/*SHARED_CSS*/
+/* ---- Experience Center: the sandbox is the whole first screen ---- */
+html, body { height: auto; }
+.xstage { padding: 0; }
+.xsandbox { position: relative; height: 100vh; height: 100dvh; min-height: 520px; display: flex; }
+.xsandbox > #erp-sandbox { flex: 1; min-width: 0; display: flex; }
+.xsandbox .dd { border: 0; border-radius: 0; box-shadow: none; }
+/* site controls live in the sandbox's browser bar */
+.x-ctl { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; }
+.x-ctl .xicon, .x-ctl .xfb-btn { height: 28px; }
+.xicon { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 7px; background: transparent; color: var(--dd-text); cursor: pointer; }
+.xicon:hover { background: var(--dd-control); color: var(--dd-ink); }
+.xicon .i-sun { display: none; }
+:root[data-theme="dark"] .xicon .i-sun { display: block; }
+:root[data-theme="dark"] .xicon .i-moon { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .xicon .i-sun { display: block; } :root:not([data-theme="light"]) .xicon .i-moon { display: none; } }
+.xfb-btn { display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; border: 0; border-radius: 7px; background: transparent; color: var(--dd-text); font: 420 13px var(--font-ui); cursor: pointer; }
+.xfb-btn:hover { background: var(--dd-control); color: var(--dd-ink); }
+.x-trial { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 7px; background: var(--dd-primary); color: var(--dd-primary-ink) !important; font: 500 13px var(--font-ui); text-decoration: none; white-space: nowrap; }
+.x-trial:hover { background: var(--dd-primary-hover); }
+@media (max-width: 640px) {
+  .xfb-btn span, .x-trial span { display: none; }
+  .xsandbox .dd-badge { display: none; }
+}
+/* feedback */
+.xfb { position: fixed; z-index: 45; left: 20px; bottom: 20px; width: min(360px, calc(100vw - 32px)); padding: 16px 18px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); box-shadow: 0 24px 60px -18px rgba(0,0,0,.4); animation: xt-in .2s ease-out; }
+.xfb.is-top { top: 64px; bottom: auto; left: auto; right: 20px; }
+.xfb h3 { margin: 0 28px 4px 0; font-size: 15px; font-weight: 600; color: var(--ink); }
+.xfb p { margin: 0 0 12px; font-size: 13px; color: var(--muted); line-height: 1.45; }
+.xfb-x { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border: 0; border-radius: 7px; background: none; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; }
+.xfb-x:hover { background: var(--soft); color: var(--ink); }
+.xfb-stars { display: flex; gap: 6px; margin-bottom: 12px; }
+.xfb-stars button { flex: 1; height: 40px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); font: 500 14px var(--font-ui); cursor: pointer; transition: border-color .15s, background .15s; }
+.xfb-stars button:hover { border-color: var(--muted); }
+.xfb-stars button[aria-pressed="true"] { background: var(--btn); color: var(--btn-ink); border-color: var(--btn); }
+.xfb-scale { display: flex; justify-content: space-between; margin: -6px 2px 12px; font-size: 11.5px; color: var(--faint); }
+.xfb textarea { width: 100%; min-height: 76px; resize: vertical; padding: 9px 11px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 13.5px/1.45 var(--font-ui); margin-bottom: 12px; }
+.xfb textarea:focus { outline: none; border-color: var(--muted); }
+.xfb-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.xfb-foot .btn { height: 34px; }
+.xfb-foot .btn[disabled] { opacity: .45; cursor: default; }
+.xfb-skip { border: 0; background: none; color: var(--muted); font: 13px var(--font-ui); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.xfb-done { display: flex; gap: 10px; align-items: flex-start; }
+.xfb-done i { width: 28px; height: 28px; border-radius: 50%; background: #E4FAEB; color: #1F7A4D; display: grid; place-items: center; font-style: normal; flex: none; }
+/* closing note under the sandbox */
+.xmore { max-width: 1480px; margin: 56px auto 40px; padding: 72px 24px 76px; text-align: center; border-radius: 20px; border: 1px solid var(--line);
+  background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--brand) 9%, var(--bg)) 0%, var(--bg) 62%); position: relative; overflow: hidden; }
+.xmore::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1px); background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(60% 70% at 50% 0%, #000, transparent 75%); mask-image: radial-gradient(60% 70% at 50% 0%, #000, transparent 75%); }
+.xmore > * { position: relative; }
+.xmore-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg);
+  font: 500 12.5px var(--font-ui); letter-spacing: .02em; color: var(--text); }
+.xmore-eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); animation: xt-beacon 2s ease-out infinite; }
+.xmore h2 { margin: 22px auto 14px; max-width: 24ch; font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 5.2vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
+.xmore p { margin: 0 auto; max-width: 46ch; font-size: 17px; line-height: 1.5; color: var(--muted); }
+.xmore-apps { list-style: none; margin: 26px auto 30px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 640px; }
+.xmore-apps li { padding: 7px 14px; border-radius: 999px; background: var(--soft); color: var(--text); font: 500 13px var(--font-ui); }
+.xmore-cta { height: 44px; padding: 0 20px; font-size: 14.5px; gap: 8px; }
+.xmore-cta svg { transition: transform .2s ease; }
+.xmore-cta:hover svg { transform: translateX(3px); }
+@media (max-width: 640px) { .xmore { margin-top: 36px; padding: 52px 20px 56px; border-radius: 16px; } .xmore h2 br { display: none; } .xmore p { font-size: 15.5px; } }
+@media (prefers-reduced-motion: reduce) { .xmore-eyebrow i { animation: none; } .xmore-cta svg { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .xfb, .xt-mh .xt-car { animation: none; transition: none; } }
+/* older page blocks (site header, horizontal tours bar) are no longer used: keep them out of view */
+.xbar, .xhead, .xtours, .xt-panel { display: none !important; }
+.xbrand svg { width: 26px; height: 26px; }
+/* welcome note */
+.xw { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(17,17,17,.42); animation: xc-in .2s ease-out; }
+@keyframes xc-in { from { opacity: 0; } }
+.xw-box { width: min(460px, 100%); padding: 22px 24px 20px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); box-shadow: 0 24px 60px -18px rgba(0,0,0,.45); }
+.xw-box h2 { margin: 0 0 10px; font: 600 18px/1.3 var(--font-ui); color: var(--ink); }
+.xw-box p { margin: 0 0 10px; font-size: 14px; line-height: 1.55; color: var(--text); }
+.xw-box b { font-weight: 600; color: var(--ink); }
+.xw-foot { display: flex; justify-content: flex-end; margin-top: 16px; }
+.xw-foot .btn { height: 36px; }
+/* trial call-to-action under the sandbox (as live on frappe.io) */
+.xcta { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 600px; margin: 32px auto 72px; padding: 20px 20px 20px 25px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.xcta p { margin: 0; font-size: 15px; font-weight: 500; color: var(--ink); }
+.xcta-btn { flex: none; display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 8px; background: var(--soft); color: var(--ink); font: 500 14.5px var(--font-ui); text-decoration: none; white-space: nowrap; }
+.xcta-btn:hover { background: var(--line); }
+@media (max-width: 640px) { .xcta { flex-direction: column; align-items: flex-start; margin: 24px 16px 48px; } }
+@media (prefers-reduced-motion: reduce) { .xw { animation: none; } }
+/*DESK_CSS*/
+</style>
+
+<main class="xstage">
+  <h1 class="sr">ERPNext Experience Center</h1>
+  <div class="xsandbox"><div id="erp-sandbox" role="region" aria-label="ERPNext sandbox"></div></div>
+  <section class="xcta" aria-label="Free trial">
+    <p>Ready for the full ERPNext experience?</p>
+    <a class="xcta-btn" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial →</a>
+  </section>
+</main>
+
+<!--FOOTER-->
+
+<script>
+/*DESK_JS*/
+</script>
+<script>
+(function () {
+  'use strict';
+  var keys = window.ERPData.MODULES.map(function (m) { return m.key; });
+  var aliases = { selling: 'sales', buying: 'procurement', 'point-of-sale': 'pos', retail: 'pos' };
+  var h = (location.hash || '').replace(/^#/, '').toLowerCase();
+  var want = aliases[h] || h;
+  var picked = keys.indexOf(want) >= 0 ? want : null;
+  var SHOWN = ['accounting', 'procurement', 'sales', 'stock', 'assets', 'manufacturing'];
+  if (picked && SHOWN.indexOf(picked) < 0) picked = null;
+  var demo = new window.ERPDemo(document.getElementById('erp-sandbox'), { id: 'exp', experience: true, start: picked ? 'dash' : 'home', module: picked || 'sales', tourModule: picked, tourModules: SHOWN });
+  window.erpDemo = demo;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* site controls in the sandbox's browser bar: feedback, theme, free trial, tours */
+  var bar = demo.root.querySelector('.dd-browser');
+  var ctl = document.createElement('span'); ctl.className = 'x-ctl';
+  ctl.innerHTML =
+    '<button type="button" class="xfb-btn" id="xfb-open" aria-haspopup="dialog"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Feedback</span></button>' +
+    '<button type="button" class="xicon" id="x-theme" aria-label="Switch between light and dark mode" title="Light / dark mode"><svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>' +
+    '<a class="x-trial" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial><span>Start free trial</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>';
+  bar.appendChild(ctl);
+
+
+  /* one welcome note on load, then the visitor is free to explore */
+  var hello = document.createElement('div'); hello.className = 'xw'; hello.setAttribute('role', 'dialog'); hello.setAttribute('aria-modal', 'true'); hello.setAttribute('aria-labelledby', 'xw-h');
+  hello.innerHTML = '<div class="xw-box"><h2 id="xw-h">Welcome to the ERPNext Experience Center</h2>' +
+    '<p>This is a limited version of ERPNext with sample data. Click around anywhere; nothing you do here is saved.</p>' +
+    '<p>Six modules come with guided tours: <b>Accounting, Buying, Selling, Stock, Assets</b> and <b>Manufacturing</b>. Find them all under <b>Guided tours</b> in the top bar.</p>' +
+    '<div class="xw-foot"><button type="button" class="btn btn-dark" data-xw-ok>Start exploring</button></div></div>';
+  document.body.appendChild(hello);
+  function closeHello() { if (hello.parentNode) hello.remove(); }
+  hello.addEventListener('click', function (e) { if (e.target === hello || e.target.closest('[data-xw-ok]')) closeHello(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeHello(); });
+  setTimeout(function () { var b = hello.querySelector('[data-xw-ok]'); if (b) b.focus({ preventScroll: true }); }, 50);
+
+  /* theme switch (shared footer) */
+  function setTheme(v) {
+    if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v);
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === v)); });
+    try { localStorage.setItem('erpnext-theme', v); } catch (e) { }
+  }
+  document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.getAttribute('data-theme-set')); }); });
+  try { var saved = localStorage.getItem('erpnext-theme'); if (saved) setTheme(saved); } catch (e) { }
+  document.getElementById('x-theme').addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+    setTheme(dark ? 'light' : 'dark');
+  });
+
+  /* ---- feedback loop ----
+     Opens only from the Feedback button; nothing asks on its own.
+     Responses go to the page's shared store when it is available (one per signed-in viewer);
+     otherwise they stay in this browser. On frappe.io, point sendFeedback at a Frappe Web Form. */
+  var fbBox = null, fbDone = false, fbAsked = false, lastTour = '';
+  try { fbDone = localStorage.getItem('erpnext-xc-feedback') === '1'; } catch (e) { }
+  var dbP = window.claude && window.claude.use ? Promise.all([window.claude.use('db'), window.claude.use('user')]).catch(function () { return [null, null]; }) : Promise.resolve([null, null]);
+  function sendFeedback(rec) {
+    try { localStorage.setItem('erpnext-xc-feedback', '1'); } catch (e) { }
+    return dbP.then(function (x) {
+      var db = x[0], user = x[1];
+      if (!db || !user || !user.id) return false;
+      return user.id().then(function (id) {
+        if (!id) return false;
+        /* one doc per viewer: latest response on top, every response kept in entries */
+        var ref = db.doc('feedback/' + id);
+        return ref.get().then(function (snap) { var prev = snap && snap.exists && snap.data ? (snap.data() || {}) : {}; return prev.entries || []; }, function () { return []; })
+          .then(function (entries) { var all = entries.concat([rec]).slice(-50); var out = {}; for (var k in rec) out[k] = rec[k]; out.entries = all; return ref.set(out); })
+          .then(function () { return true; });
+      });
+    }).catch(function () { return false; });
+  }
+  function closeFb() { if (fbBox) { fbBox.remove(); fbBox = null; } }
+  function openFb(context) {
+    closeFb();
+    var rating = 0;
+    fbBox = document.createElement('div'); fbBox.className = 'xfb' + (context === 'button' ? ' is-top' : ''); fbBox.setAttribute('role', 'dialog'); fbBox.setAttribute('aria-label', 'Feedback');
+    fbBox.innerHTML = '<button type="button" class="xfb-x" aria-label="Close">×</button><h3>' + (context === 'tour' ? 'How was that tour?' : 'How is the Experience Center?') + '</h3><p>' + (context === 'tour' ? 'One tap helps us make these tours better.' : 'Tell us what worked and what didn’t. It takes ten seconds.') + '</p>' +
+      '<div class="xfb-stars" role="group" aria-label="Rating from 1 to 5">' + [1, 2, 3, 4, 5].map(function (n) { return '<button type="button" data-r="' + n + '" aria-pressed="false">' + n + '</button>'; }).join('') + '</div><div class="xfb-scale"><span>Not useful</span><span>Very useful</span></div>' +
+      '<textarea placeholder="What would make it more useful? (optional)" maxlength="800" aria-label="Comment"></textarea>' +
+      '<div class="xfb-foot"><button type="button" class="xfb-skip">Not now</button><button type="button" class="btn btn-dark" data-send disabled>Send feedback</button></div>';
+    document.body.appendChild(fbBox);
+    var send = fbBox.querySelector('[data-send]');
+    fbBox.querySelectorAll('[data-r]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        rating = +b.getAttribute('data-r');
+        fbBox.querySelectorAll('[data-r]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.getAttribute('data-r') === rating)); });
+        send.disabled = false;
+      });
+    });
+    fbBox.querySelector('.xfb-x').addEventListener('click', closeFb);
+    fbBox.querySelector('.xfb-skip').addEventListener('click', closeFb);
+    send.addEventListener('click', function () {
+      if (!rating) return;
+      var rec = { rating: rating, comment: fbBox.querySelector('textarea').value.trim().slice(0, 800), tour: lastTour, context: context, company: demo.S.personal ? demo.S.company : '', sector: demo.S.personal ? demo.S.sectorLabel : '', toursDone: Object.keys(demo.S.toursDone || {}).length, at: new Date().toISOString() };
+      send.disabled = true;
+      sendFeedback(rec).then(function () {
+        fbDone = true;
+        if (!fbBox) return;
+        fbBox.innerHTML = '<div class="xfb-done"><i>✓</i><div><h3>Thank you!</h3><p>Your feedback helps us shape the Experience Center.</p></div></div>';
+        setTimeout(closeFb, 2600);
+      });
+    });
+  }
+  document.getElementById('xfb-open').addEventListener('click', function (e) { e.stopPropagation(); openFb('button'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeFb(); });
+  demo.on('tour-done', function (t) { lastTour = t && t.id || ''; });
+  demo.on('tour-feedback', function (f) {
+    if (!f || !f.rating) return;
+    sendFeedback({ rating: f.rating, comment: f.comment || '', tour: f.tour || lastTour, context: 'tour', company: demo.S.personal ? demo.S.company : '', sector: demo.S.personal ? demo.S.sectorLabel : '', toursDone: Object.keys(demo.S.toursDone || {}).length, at: new Date().toISOString() });
+  });
+})();
+</script>

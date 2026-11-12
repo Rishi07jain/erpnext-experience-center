@@ -1,0 +1,777 @@
+<title>ERPNext for India</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ERPNext for India, with hosting in India. ERPNext is the world's leading 100% open-source ERP software, trusted by businesses across India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap">
+<style>
+/* Layout: Frappe's narrow editorial column (600px), with one deliberate break-out — the live ERPNext demo runs at ~88vw. */
+:root {
+  --bg: #FFFFFF; --ink: #171717; --text: #383838; --muted: #7C7C7C; --faint: #999999;
+  --line: #E2E2E2; --soft: #F3F3F3; --soft-2: #F8F8F8; --btn: #171717; --btn-ink: #FFFFFF; --btn-hover: #2E2E2E;
+  --brand: #0289F7;
+  --font-ui: "InterVar", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --col: 640px; --top: 52px;
+  /* desk demo */
+  --dd-bg: #FFFFFF; --dd-page: #F8F8F8; --dd-chrome: #F3F3F3; --dd-control: #F3F3F3; --dd-control-hover: #EBEBEB;
+  --dd-border: #EDEDED; --dd-ink: #171717; --dd-text: #383838; --dd-muted: #7C7C7C; --dd-dot: #DADADA;
+  --dd-primary: #171717; --dd-primary-ink: #FFFFFF; --dd-primary-hover: #333333; --dd-glow: rgba(23,23,23,.28);
+  --dd-avatar: #E6F4FF; --dd-avatar-ink: #0070CC; --dd-bar: #DCDCDC; --dd-bar-now: #171717; --dd-scrim: rgba(23,23,23,.28); --dd-brand: #0289F7;
+  --dd-shadow: 0 1px 2px rgba(0,0,0,.04), 0 24px 60px -24px rgba(0,0,0,.18); --dt-dim: rgba(23,23,23,.32);
+  --p-red: #CC2929; --p-red-bg: #FFF0F0; --p-orange: #B35300; --p-orange-bg: #FFF4E5;
+  --p-green: #1F7A4D; --p-green-bg: #E4FAEB; --p-blue: #0068C2; --p-blue-bg: #E6F4FF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111; --ink: #F2F2F2; --text: #CFCFCF; --muted: #8E8E8E; --faint: #8A8A8A;
+    --line: #2A2A2A; --soft: #1F1F1F; --soft-2: #181818; --btn: #F2F2F2; --btn-ink: #171717; --btn-hover: #D9D9D9;
+    --brand: #3AA2FF;
+    --dd-bg: #1A1A1A; --dd-page: #141414; --dd-chrome: #202020; --dd-control: #262626; --dd-control-hover: #2E2E2E;
+    --dd-border: #2C2C2C; --dd-ink: #F2F2F2; --dd-text: #CFCFCF; --dd-muted: #8E8E8E; --dd-dot: #3A3A3A;
+    --dd-primary: #F2F2F2; --dd-primary-ink: #171717; --dd-primary-hover: #D9D9D9; --dd-glow: rgba(242,242,242,.3);
+    --dd-avatar: #12273A; --dd-avatar-ink: #6BB8FF; --dd-bar: #333333; --dd-bar-now: #F2F2F2; --dd-scrim: rgba(0,0,0,.5);
+    --dd-shadow: 0 1px 2px rgba(0,0,0,.3), 0 24px 60px -24px rgba(0,0,0,.7); --dt-dim: rgba(0,0,0,.55);
+    --p-red: #FF8A8A; --p-red-bg: #3A1A1A; --p-orange: #FFB25C; --p-orange-bg: #3A2A12;
+    --p-green: #5BD08C; --p-green-bg: #13301F; --p-blue: #6BB8FF; --p-blue-bg: #12273A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111111; --ink: #F2F2F2; --text: #CFCFCF; --muted: #8E8E8E; --faint: #8A8A8A;
+  --line: #2A2A2A; --soft: #1F1F1F; --soft-2: #181818; --btn: #F2F2F2; --btn-ink: #171717; --btn-hover: #D9D9D9;
+  --brand: #3AA2FF;
+  --dd-bg: #1A1A1A; --dd-page: #141414; --dd-chrome: #202020; --dd-control: #262626; --dd-control-hover: #2E2E2E;
+  --dd-border: #2C2C2C; --dd-ink: #F2F2F2; --dd-text: #CFCFCF; --dd-muted: #8E8E8E; --dd-dot: #3A3A3A;
+  --dd-primary: #F2F2F2; --dd-primary-ink: #171717; --dd-primary-hover: #D9D9D9; --dd-glow: rgba(242,242,242,.3);
+  --dd-avatar: #12273A; --dd-avatar-ink: #6BB8FF; --dd-bar: #333333; --dd-bar-now: #F2F2F2; --dd-scrim: rgba(0,0,0,.5);
+  --dd-shadow: 0 1px 2px rgba(0,0,0,.3), 0 24px 60px -24px rgba(0,0,0,.7); --dt-dim: rgba(0,0,0,.55);
+  --p-red: #FF8A8A; --p-red-bg: #3A1A1A; --p-orange: #FFB25C; --p-orange-bg: #3A2A12;
+  --p-green: #5BD08C; --p-green-bg: #13301F; --p-blue: #6BB8FF; --p-blue-bg: #12273A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 var(--font-ui); letter-spacing: 0.01em; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { color: var(--ink); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: var(--col); margin: 0 auto; }
+
+/* top bar */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+.topbar-in { display: flex; align-items: center; gap: 12px; height: var(--top); }
+.crumbs { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); min-width: 0; white-space: nowrap; }
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs .sep { opacity: .55; }
+.crumbs .here { color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
+.flag { width: 18px; height: 12px; border-radius: 2px; display: block; box-shadow: 0 0 0 1px var(--line); }
+.top-r { margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 14px; }
+.top-r a { text-decoration: none; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
+.top-r a:hover { color: var(--ink); }
+.journey { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--ink); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); opacity: .85; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 8px; font: 500 14px/1 var(--font-ui); letter-spacing: 0.01em; text-decoration: none; border: 0; cursor: pointer; transition: background .15s, transform .15s; white-space: nowrap; }
+.btn:active { transform: translateY(1px); }
+.btn-dark { background: var(--btn); color: var(--btn-ink); }
+.btn-dark:hover { background: var(--btn-hover); }
+.btn-soft { background: var(--soft); color: var(--ink); }
+.btn-soft:hover { background: color-mix(in srgb, var(--soft) 80%, var(--ink) 8%); }
+.btn-line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.btn-line:hover { background: var(--soft); }
+.btn svg { flex: none; }
+.link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; }
+.link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* type */
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); }
+.h2 { font-size: 22px; line-height: 1.3; font-weight: 600; letter-spacing: -0.005em; }
+.lede { font-size: 15px; color: var(--text); max-width: 62ch; }
+
+/* sections */
+.sec { padding-block: 72px 0; scroll-margin-top: calc(var(--top) + 12px); }
+.sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+/* hero */
+.hero { padding-block: 72px 0; text-align: center; }
+.hero .col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.brandmark { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--ink); font-size: 15px; font-weight: 500; }
+.brandmark svg { width: 44px; height: 44px; }
+.hero h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 4.2vw, 44px); line-height: 1.12; letter-spacing: -0.01em; margin-top: 10px; }
+.hero .sub { font-size: 17px; color: var(--text); }
+.hero .lede { margin-top: 2px; }
+.hero .ctas { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+.xcbtn { position: relative; isolation: isolate; margin-top: 26px; display: inline-flex; align-items: center; gap: 16px; padding: 12px 14px 12px 22px; border-radius: 16px; background: var(--btn); color: var(--btn-ink); text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 18px 40px -18px rgba(0,0,0,.45); transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s; }
+.xcbtn::before { content: ""; position: absolute; inset: -1.5px; z-index: -1; border-radius: 17.5px; background: conic-gradient(from var(--xa, 0deg), transparent 0 62%, color-mix(in srgb, var(--brand) 85%, transparent) 76%, transparent 90%); animation: xspin 5s linear infinite; }
+.xcbtn::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 16px; background: var(--btn); }
+.xcbtn:hover { transform: translateY(-2px); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 26px 50px -18px rgba(0,0,0,.5); }
+.xcbtn-t { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
+.xcbtn-t b { font: 500 17px/1.25 var(--font-ui); letter-spacing: 0; }
+.xcbtn-t small { font-size: 12.5px; opacity: .68; }
+.xcbtn-go { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: color-mix(in srgb, var(--btn-ink) 12%, transparent); transition: transform .25s cubic-bezier(.2,.7,.2,1); flex: none; }
+.xcbtn:hover .xcbtn-go { transform: translateX(3px); }
+@property --xa { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes xspin { to { --xa: 360deg; } }
+.trynote { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.feat-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+.feat-cta-note { font-size: 13px; color: var(--muted); }
+.stats { margin-top: 56px; text-align: left; }
+.stats dl { margin: 12px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.stats dt { order: 2; font-size: 13px; color: var(--muted); }
+.stats dd { order: 1; margin: 0; font-size: 22px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.stats dl > div { display: flex; flex-direction: column; gap: 2px; padding-top: 12px; border-top: 1px solid var(--line); }
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 32px; }
+.shots img { border-radius: 10px; border: 1px solid var(--line); width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--soft-2); }
+.shots:empty { display: none; }
+
+/* features (the wide break-out) */
+.features { padding-block: 88px 0; }
+.stage { width: min(1480px, 100%); margin: 0 auto; }
+.tabs-bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--top)); z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.tabs { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); justify-content: center; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { position: relative; flex: none; border: 0; background: none; padding: 14px 0 13px; font: 400 14px var(--font-ui); color: var(--muted); cursor: pointer; letter-spacing: 0.01em; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); font-weight: 500; }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--ink); }
+.feat-meta { display: flex; align-items: center; gap: 10px 22px; flex-wrap: wrap; justify-content: center; padding: 14px 0 18px; font-size: 13.5px; color: var(--text); }
+.feat-meta ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: center; }
+.feat-meta li { display: inline-flex; align-items: center; gap: 6px; }
+.feat-meta li svg { color: var(--muted); }
+.feat-meta li.swap { animation: fadeup .35s ease-out both; }
+@keyframes fadeup { from { opacity: 0; transform: translateY(4px); } }
+.demo-wrap { height: clamp(520px, calc(100vh - 220px), 820px); transform-origin: 50% 0; will-change: transform; }
+.demo-note { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+.demo-wrap { position: relative; }
+.demo-wrap #erp-demo { height: 100%; pointer-events: none; user-select: none; }
+.demo-open { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 0 16px 44px; border-radius: 12px; text-decoration: none; background: linear-gradient(to bottom, transparent 45%, color-mix(in srgb, var(--bg) 82%, transparent) 88%); }
+.demo-open > span { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--btn); color: var(--btn-ink); font: 500 15px var(--font-ui); box-shadow: 0 16px 36px -14px rgba(0,0,0,.45); transition: transform .2s; }
+.demo-open:hover > span { transform: translateY(-2px); }
+
+/* cue */
+.cue { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 56px; text-align: center; }
+.cue::before { content: ""; width: 1px; height: 28px; background: linear-gradient(var(--bg), var(--line)); }
+.cue-q { font-size: 13px; color: var(--muted); }
+.cue-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.cue .btn-soft svg { transition: transform .2s; }
+.cue .btn-soft:hover svg { transform: translateY(2px); }
+
+/* partners */
+.plist { display: flex; flex-direction: column; border-top: 1px solid var(--line); margin-top: 8px; }
+.plist a { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 14px 2px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: padding .2s; }
+.plist a:hover { padding-left: 8px; }
+.plist .pname { font-weight: 500; min-width: 0; }
+.plist .pcountry { font-size: 13px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+.tier { font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 999px; background: var(--soft); color: var(--text); min-width: 64px; text-align: center; }
+.tier.gold { background: #FBF3DC; color: #7A5A00; }
+.tier.silver { background: #EEF0F3; color: #4A5260; }
+.tier.bronze { background: #F8ECE3; color: #8A4B1F; }
+:root[data-theme="dark"] .tier.gold { background: #3A3112; color: #E8C766; }
+:root[data-theme="dark"] .tier.silver { background: #262A30; color: #C3CAD4; }
+:root[data-theme="dark"] .tier.bronze { background: #35241A; color: #E0A47A; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tier.gold { background: #3A3112; color: #E8C766; }
+  :root:not([data-theme="light"]) .tier.silver { background: #262A30; color: #C3CAD4; }
+  :root:not([data-theme="light"]) .tier.bronze { background: #35241A; color: #E0A47A; }
+}
+.subhead { font-size: 14px; font-weight: 600; color: var(--ink); margin-top: 28px; }
+
+/* customers */
+.logos { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px 22px; align-items: center; margin: 4px 0 28px; }
+.logos img { width: 100%; height: 34px; object-fit: contain; filter: grayscale(1); opacity: .75; transition: opacity .2s, filter .2s; }
+.logos img:hover { filter: none; opacity: 1; }
+.logos:empty { display: none; }
+.stories { display: flex; flex-direction: column; gap: 10px; }
+.story { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; transition: border-color .2s, transform .2s; }
+.story:hover { border-color: var(--muted); transform: translateY(-1px); }
+.story b { font-weight: 500; color: var(--ink); line-height: 1.45; }
+.story span { font-size: 12.5px; color: var(--muted); }
+
+/* GST */
+.gst p + p { margin-top: 12px; }
+.gst-badges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+.gst-badges div { display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: var(--soft-2); border: 1px solid var(--line); color: var(--ink); font-size: 14px; font-weight: 500; line-height: 1.35; }
+.gst-badges svg { color: var(--muted); }
+
+/* benefits */
+.benefits { display: flex; flex-direction: column; gap: 30px; }
+.benefit { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; }
+.benefit svg { color: var(--ink); margin-top: 2px; }
+.benefit h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.benefit p { font-size: 14.5px; }
+.benefit .link { margin-top: 10px; }
+
+/* industries */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips a { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; font-size: 14px; color: var(--ink); transition: background .15s; }
+.chips a:hover { background: var(--soft); }
+
+/* integrations */
+.apps2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 20px 0 18px; }
+.appcard { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 12px; border: 1px solid var(--line); text-decoration: none; transition: border-color .2s; }
+.appcard:hover { border-color: var(--muted); }
+.appcard b { color: var(--ink); font-weight: 600; font-size: 14.5px; }
+.appcard span { font-size: 13.5px; color: var(--text); }
+
+/* frappe apps */
+.fapps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin: 22px 0 18px; }
+.fapps a { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; transition: background .15s; }
+.fapps a:hover { background: var(--soft-2); }
+.fapps b { color: var(--ink); font-weight: 600; font-size: 14px; }
+.fapps span { font-size: 13px; color: var(--muted); }
+
+/* testimonials */
+.quotes { position: relative; }
+.quote { margin: 0; display: none; }
+.quote.is-on { display: block; animation: fadeup .4s ease-out; }
+.quote blockquote { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 2.4vw, 25px); line-height: 1.38; color: var(--ink); letter-spacing: -0.005em; text-wrap: pretty; }
+.quote figcaption { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+.quote figcaption img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.qnav { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.qnav button { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--soft); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.qnav button:hover { background: var(--line); }
+.qdots { display: flex; gap: 6px; margin-left: 6px; }
+.qdots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .2s, width .2s; }
+.qdots i.is-on { background: var(--ink); width: 18px; border-radius: 3px; }
+
+/* starter pack + final */
+.starter { padding: 22px; border-radius: 14px; background: var(--soft-2); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.starter h2 { font-size: 18px; font-weight: 600; }
+.starter .link { margin-top: 6px; }
+.final { padding-block: 96px; text-align: center; }
+.final h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 3.6vw, 38px); line-height: 1.15; }
+.final .cue-row { margin-top: 22px; }
+
+/* footer */
+footer { border-top: 1px solid var(--line); padding-block: 48px 36px; font-size: 13.5px; }
+.foot { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr repeat(6, minmax(0, 1fr)); gap: 28px 20px; }
+.foot h4 { margin: 0 0 10px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.foot ul a { text-decoration: none; color: var(--muted); }
+.foot ul a:hover { color: var(--ink); }
+.wordmark { font-family: var(--font-display); font-size: 22px; color: var(--ink); text-decoration: none; }
+.foot-tag { margin-top: 6px; color: var(--muted); line-height: 1.45; }
+.social { display: flex; gap: 12px; margin-top: 14px; }
+.social a { color: var(--muted); }
+.social a:hover { color: var(--ink); }
+.foot-base { max-width: 1080px; margin: 36px auto 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; }
+.theme-sw { display: flex; gap: 4px; align-items: center; }
+.theme-sw button { border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; padding: 2px 4px; border-radius: 4px; }
+.theme-sw button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* scroll reveal: elements are visible by default; JS only pre-hides ones below the fold */
+.rv { transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.rv.pre { opacity: 0; transform: translateY(18px); }
+
+@media (max-width: 900px) {
+  .foot { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .foot > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .sec { padding-block: 56px 0; }
+  .hero { padding-block: 48px 0; }
+  .stats dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shots { grid-template-columns: minmax(0, 1fr); }
+  .tabs { justify-content: flex-start; }
+  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gst-badges { grid-template-columns: minmax(0, 1fr); }
+  .apps2 { grid-template-columns: minmax(0, 1fr); }
+  .fapps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .demo-wrap { height: clamp(520px, 78vh, 760px); }
+  .plist a { grid-template-columns: minmax(0, 1fr) auto; }
+  .plist .pcountry { display: none; }
+  .foot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .crumbs .hide-sm { display: none; }
+  .top-r .regions { display: none; }
+  .feat-meta ul { justify-content: flex-start; }
+  .feat-meta { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rv, .rv.pre { transition: none; opacity: 1; transform: none; }
+  .xcbtn::before, .feat-meta li.swap, .quote.is-on { animation: none; }
+  .demo-wrap { transform: none !important; }
+}
+/*DESK_CSS*/
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></symbol>
+  <symbol id="i-flag" viewBox="0 0 18 12"><rect width="18" height="4" fill="#FF9933"/><rect y="4" width="18" height="4" fill="#FFFFFF"/><rect y="8" width="18" height="4" fill="#138808"/><circle cx="9" cy="6" r="1.5" fill="none" stroke="#000080" stroke-width=".5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar-in gutter">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="https://frappe.io/" class="hide-sm">Frappe</a><span class="sep hide-sm">›</span>
+      <a href="https://frappe.io/erpnext">ERPNext</a><span class="sep">›</span>
+      <span class="here">India <svg class="flag" aria-label="Flag of India"><use href="#i-flag"/></svg></span>
+    </nav>
+    <div class="top-r">
+      <a class="regions" href="https://frappe.io/erpnext/regions"><svg width="15" height="15" aria-hidden="true"><use href="#i-globe"/></svg>Regions</a>
+      <a href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+  <span class="journey" aria-hidden="true"></span>
+</header>
+
+<main>
+  <!-- 1. Hero -->
+  <section class="hero gutter" id="top">
+    <div class="col">
+      <div class="brandmark rv">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#3E8EF7"/><path fill="#fff" d="M11.6 8.4h9.2v2.8h-9.2zM11.6 14.6h9.2v2.7h-6.4v3.5h6.4v2.8h-9.2z"/></svg>
+        ERPNext
+      </div>
+      <h1 class="rv">The only ERP you'll ever need</h1>
+      <p class="sub rv">User-friendly. Customisable. All-in-one.</p>
+      <p class="lede rv">ERPNext is a comprehensive, user-friendly, and 100% open-source ERP. Its powerful feature set makes it suitable for businesses across industries and scales.</p>
+      <div class="ctas rv">
+        <a class="btn btn-line" href="https://frappe.io/contact-us">Contact Us</a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start Free Trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <a class="xcbtn rv" href="experience-center.html" data-xc><span class="xcbtn-t"><b>Try it now in our Experience Center</b><small>Guided tours of every module, set up for your company</small></span><span class="xcbtn-go" aria-hidden="true"><svg width="18" height="18"><use href="#i-arrow"/></svg></span></a>
+      <p class="trynote rv">No sign-up. Runs in your browser.</p>
+    </div>
+    <div class="col stats rv">
+      <div class="eyebrow">Frappe Ecosystem</div>
+      <dl>
+        <div><dt>Customers</dt><dd>50,000+</dd></div>
+        <div><dt>Developers</dt><dd>20,000+</dd></div>
+        <div><dt>Partners</dt><dd>200</dd></div>
+        <div><dt>Github Stars</dt><dd>50,000+</dd></div>
+      </dl>
+      <div class="shots"><img src="https://frappe.io/files/image2b2c79.webp" alt="ERPNext desk screenshot" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/image4c2555.webp" alt="ERPNext report screenshot" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/image1e3062.webp" alt="ERPNext form screenshot" loading="lazy" onerror="this.remove()"></div>
+    </div>
+  </section>
+
+  <!-- 2. Key features: live demo -->
+  <section class="sec features gutter" id="features" aria-labelledby="feat-h">
+    <div class="col sec-head rv">
+      <div class="eyebrow">Key Features</div>
+      <h2 class="h2" id="feat-h">Run your entire business on one platform</h2>
+      <p class="lede">Pick a module to see its ERPNext workspace. Open it in the Experience Center to watch guided tours of the everyday tasks, set up for your company.</p>
+    </div>
+    <div class="stage">
+      <div class="tabs-bar">
+        <div class="tabs" role="tablist" aria-label="ERPNext modules"></div>
+      </div>
+      <div class="feat-meta" aria-live="polite">
+        <ul id="feat-checks"></ul>
+        <a class="link" id="feat-know" href="#">Know more <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="demo-wrap" id="demo-wrap">
+        <div id="erp-demo" inert aria-hidden="true"></div>
+        <a class="demo-open" id="demo-open" href="experience-center.html#sales" data-xc><span><span id="demo-open-l">Explore Selling in the Experience Center</span><svg width="15" height="15" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+      </div>
+      <p class="demo-note" id="demo-note">A preview of the ERPNext Selling workspace on sample data.</p>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Want an expert to set it up for you?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#partners">Meet our implementation partners <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Partners -->
+  <section class="sec gutter" id="partners" aria-labelledby="partners-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Our Partners</div>
+        <h2 class="h2" id="partners-h">We have a network of 200+ authorised partners globally</h2>
+        <p class="lede">Over the years we have built a network of trusted partners to help customers throughout their ERPNext lifecycle. Partners manage every step - from analysing business processes &amp; identifying the right configurations, to deployment, testing &amp; post-implementation support. We make sure that our partners bring deep domain expertise and are trained to deliver maximum value out of ERPNext. Whether you're just going live or scaling across regions or entities, our partners ensure that you succeed in your ERPNext journey!</p>
+      </div>
+      <h3 class="subhead rv">Our certified partners in India</h3>
+      <div class="plist rv">
+        <a href="https://frappe.io/partners/india/tridots-tech-private-limited"><span class="pname">Tridots Tech Private Limited</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier gold">GOLD</span></a>
+        <a href="https://frappe.io/partners/india/new-indictrans-technologies-pvt-ltd"><span class="pname">New Indictrans Technologies Pvt Ltd</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier gold">GOLD</span></a>
+        <a href="https://frappe.io/partners/india/softwarework-india-pvt-ltd"><span class="pname">Software@Work India. Pvt. Ltd</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier gold">GOLD</span></a>
+        <a href="https://frappe.io/partners/india/hybrowlabs-technologies"><span class="pname">Hybrowlabs Technologies</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier silver">SILVER</span></a>
+        <a href="https://frappe.io/partners/india/8848-digital-llp"><span class="pname">8848 Digital LLP</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier silver">SILVER</span></a>
+        <a href="https://frappe.io/partners/india/smb-catalyst"><span class="pname">Agkiya Technology and Consulting LLP</span><span class="pcountry"><svg class="flag" aria-hidden="true"><use href="#i-flag"/></svg>India</span><span class="tier bronze">BRONZE</span></a>
+      </div>
+      <p class="rv" style="margin-top:18px"><a class="link" href="https://frappe.io/partners/list">Explore our partner network <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Who already runs on ERPNext?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#customers">See businesses using it <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Customers -->
+  <section class="sec gutter" id="customers" aria-labelledby="cust-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Our Customers</div>
+        <h2 class="h2" id="cust-h">We are trusted by 30,000+ businesses worldwide</h2>
+      </div>
+      <div class="logos rv"><img src="https://frappe.io/files/01.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/02.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/039a1bdd.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/04a2639792fcc0.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/05b8d4730e6541.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/06.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/07.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/08710d13.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/09464ff4.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/10.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/1180a5d02a3975.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/124a3c1f6b56fa.webp" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/132e373e.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/14807961.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/15e86b50.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/16b3816b.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/173f8516.png" alt="Customer logo" loading="lazy" onerror="this.remove()"><img src="https://frappe.io/files/18536a22.png" alt="Customer logo" loading="lazy" onerror="this.remove()"></div>
+      <div class="stories rv">
+        <a class="story" href="https://frappe.io/stories/P%E2%80%A2TAL"><b>How GETPOS implementation helps multi-outlet retail businesses streamline operations</b><span>Retail · India</span></a>
+        <a class="story" href="https://frappe.io/stories/Keep%20Learning"><b>₹50 Cr+ Budget, 5,000+ Vendors: How Keeplearning automated budgeting with ERPNext</b><span>Education · India</span></a>
+        <a class="story" href="https://frappe.io/stories/Silver%20Blue%20Global%20Solution%20PTE%20LTD"><b>ERPNext helps Silver Blue Water scale distribution operations across 25,000+ retailers</b><span>Food and Beverages · India</span></a>
+      </div>
+      <p class="rv" style="margin-top:18px"><a class="link" href="https://frappe.io/stories">Read more stories <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Running a business in India?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#gst">See how it handles GST <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. GST -->
+  <section class="sec gutter gst" id="gst" aria-labelledby="gst-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">India Compliance</div>
+        <h2 class="h2" id="gst-h">Manage your business and comply with India GST regulations</h2>
+      </div>
+      <div class="lede rv">
+        <p>The India Compliance app delivers compliance with India's Goods and Services Tax (GST) regulations. It automatically pre-configures masters such as GST tax ledgers, HSN/SAC codes, and Item Tax Templates, covering all necessary permutations for in-state, interstate, and union territory transactions.</p>
+        <p>For businesses on Frappe Cloud, e-invoicing is fully integrated into your subscription, offering a one-stop solution. The system includes a pre-formatted GST invoice print template, which dynamically converts the government-issued IRN into a scannable QR code. Generate essential statutory reports, including GSTR-1, GSTR-2, GSTR-3B and others, instantly at the click of a button.</p>
+      </div>
+      <div class="gst-badges rv">
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>E-invoicing</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M8 13h8M8 17h5"/></svg>GSTR1, GSTR2 and GSTR3B</div>
+        <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>Pre-configured Tax Templates</div>
+      </div>
+    </div>
+    <div class="cue">
+      <p class="cue-q">What changes when you switch?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#benefits">See why teams switch <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Benefits -->
+  <section class="sec gutter" id="benefits" aria-labelledby="ben-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Benefits</div>
+        <h2 class="h2" id="ben-h">Make your business ready for the future</h2>
+      </div>
+      <div class="benefits">
+        <div class="benefit rv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <div><h3>One app to manage the entire business</h3><p>ERPNext is feature rich. From Manufacturing to Services and SMBs to Large Enterprises, it works for everyone. It also integrates with many other apps built by Frappe like CRM, HR &amp; Payroll, etc.</p><a class="link" href="https://frappe.io/products">Explore Frappe apps <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+        <div class="benefit rv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 8h12M14.5 21 6 13h3a5 5 0 0 0 0-10"/></svg>
+          <div><h3>No per-user pricing; pay only for hosting</h3><p>Businesses typically spend 2-6% of their revenue on proprietary SaaS, which keeps growing exponentially with time thanks to per-user pricing plans. However, in case of hosting costs, you pay only for the cloud services utilized, which do not linearly increase with scale.</p><a class="link" href="https://frappe.io/erpnext/pricing">Explore ERPNext pricing <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+        <div class="benefit rv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+          <div><h3>Customizable; No code, Low code</h3><p>Design forms, reports, print formats, and dashboards as per your requirement and automate tasks with drag-and-drop simplicity. All this is possible because ERPNext is built on Frappe's very own Frappe Framework.</p><a class="link" href="https://frappe.io/framework">Explore Frappe Framework <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+        <div class="benefit rv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          <div><h3>Enterprise grade security &amp; privacy</h3><p>ERPNext is ISO 27001 and GDPR compliant. Being powered by AWS gives it extended security benefits like DDoS protection. It is also equipped with 2FA, IP restriction, and field-level roles &amp; permissions, which provide an added layer of security.</p><a class="link" href="https://frappecloud.com/security">Explore Frappe's security stack <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+        <div class="benefit rv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+          <div><h3>No vendor lockin</h3><p>ERPNext comes with a default hosting option on Frappe Cloud. But you can host it on your cloud as well. You can choose to implement it yourself or work with one of our certified partners. All this, without any compulsions of working with the same setup in future.</p><a class="link" href="https://frappecloud.com/">Explore Frappe Cloud <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Does it fit your kind of business?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#industries">Find your industry <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Industries -->
+  <section class="sec gutter" id="industries" aria-labelledby="ind-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Industries</div>
+        <h2 class="h2" id="ind-h">Industry-specific features ensure ease of doing business</h2>
+        <p class="lede">From manufacturing plants to healthcare systems, ERPNext adapts to meet the unique demands of your industry. Simplify operations, optimize resources, and grow faster with a flexible, all-in-one ERP solution.</p>
+      </div>
+      <div class="chips rv">
+        <a href="https://frappe.io/erpnext/for-manufacturing-industry">Manufacturing</a>
+        <a href="https://frappe.io/erpnext/for-trading-and-distribution">Trading and Distribution</a>
+        <a href="https://frappe.io/erpnext/for-EPC-engineering-contruction">Engineering (EPC)</a>
+        <a href="https://frappe.io/erpnext/for-healthcare">Healthcare</a>
+        <a href="https://frappe.io/erpnext/for-services">Professional Services</a>
+        <a href="https://frappe.io/erpnext/for-retail">Retail</a>
+        <a href="https://frappe.io/erpnext/for-ecommerce">E-commerce</a>
+        <a href="https://frappe.io/erpnext/for-education">Education</a>
+        <a href="https://frappe.io/erpnext/for-financial-services">Financial Services</a>
+        <a href="https://frappe.io/erpnext/for-non-profits">Non-profits</a>
+      </div>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Already using other tools?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#integrations">Connect the apps you use <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Integrations -->
+  <section class="sec gutter" id="integrations" aria-labelledby="int-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Marketplace apps built for India</div>
+        <h2 class="h2" id="int-h">Plug and Play integrations</h2>
+        <p class="lede">Break down data silos and streamline operations by integrating ERPNext with your favorite apps—effortless connectivity for a faster-growing business.</p>
+      </div>
+      <div class="apps2 rv">
+        <a class="appcard" href="https://cloud.frappe.io/marketplace/apps/indiamart_erpnext_integration"><b>Indiamart ERPNext Integration</b><span>Automatically pull purchase inquires from indiamart and create leads in ERPNext</span></a>
+        <a class="appcard" href="https://cloud.frappe.io/marketplace/apps/india_compliance"><b>India Compliance</b><span>Simple, yet powerful compliance solutions for Indian businesses</span></a>
+      </div>
+      <p class="rv"><a class="link" href="https://cloud.frappe.io/marketplace/search">Visit Frappe Cloud marketplace <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Need more than an ERP?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#apps">Explore more Frappe apps <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Frappe apps -->
+  <section class="sec gutter" id="apps" aria-labelledby="apps-h">
+    <div class="col">
+      <div class="sec-head rv">
+        <div class="eyebrow">Open source = community collaboration + innovation</div>
+        <h2 class="h2" id="apps-h">ERPNext is just the start</h2>
+        <p class="lede">Frappe, the owner and maintainer of ERPNext is building many other world-class business apps. Everything you ever need to manage your business including BI tool, website builder, learning management system, team communication tool and more.</p>
+      </div>
+      <div class="fapps rv">
+        <a href="https://frappe.io/crm"><b>CRM</b><span>Sales</span></a>
+        <a href="https://frappe.io/hr"><b>Frappe HR</b><span>Peoples operations</span></a>
+        <a href="https://frappe.io/learning"><b>LMS</b><span>Learning</span></a>
+        <a href="https://frappe.io/helpdesk"><b>Helpdesk</b><span>Customer support</span></a>
+        <a href="https://frappe.io/insights"><b>Insights</b><span>Data analysis</span></a>
+        <a href="https://frappe.io/builder"><b>Builder</b><span>Website builder</span></a>
+        <a href="https://frappe.io/gameplan"><b>Gameplan</b><span>Team forum</span></a>
+        <a href="https://frappe.io/framework"><b>Framework</b><span>Web framework</span></a>
+        <a href="https://frappe.io/cloud"><b>Cloud</b><span>Frappe Hosting</span></a>
+      </div>
+      <p class="rv"><a class="link" href="https://frappe.io/">Know more about Frappe <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Still deciding?</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#voices">Hear from our customers <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Testimonials -->
+  <section class="sec gutter" id="voices" aria-labelledby="voices-h">
+    <div class="col">
+      <h2 class="sr" id="voices-h">What customers say</h2>
+      <div class="quotes rv" aria-roledescription="carousel">
+        <figure class="quote is-on"><blockquote>After evaluating a bunch of ERPs, including TCS, Tally and many others, I finally found the right ERP for my furniture manufacturing startup. I love using ERPNext and recommend it to any discrete manufacturing company.</blockquote></figure>
+        <figure class="quote"><blockquote>We have been using ERPNext for ten years now and have no complaints. Appreciate its scope and ease of use, especially when I see people struggling to implement SAP Business One. They needed partners, while we implemented ourselves.</blockquote></figure>
+        <figure class="quote"><blockquote>Easy to use, great interface, very understandable, self-explanatory forms. Support responds quickly to issues, and they get resolved.</blockquote><figcaption><img src="https://frappe.io/files/sonal.jpeg" alt="" loading="lazy" onerror="this.remove()">Sonal Ramnathkar · Director at Eudora Enterprise Ltd</figcaption></figure>
+        <div class="qnav">
+          <button type="button" data-q="-1" aria-label="Previous quote"><svg width="16" height="16"><use href="#i-left"/></svg></button>
+          <button type="button" data-q="1" aria-label="Next quote"><svg width="16" height="16"><use href="#i-right"/></svg></button>
+          <span class="qdots" aria-hidden="true"><i class="is-on"></i><i></i><i></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="cue">
+      <p class="cue-q">Small business? Start lean.</p>
+      <div class="cue-row">
+        <a class="btn btn-soft" href="#starter">See the Starter Pack <svg width="15" height="15" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Starter pack -->
+  <section class="sec gutter" id="starter" aria-labelledby="starter-h">
+    <div class="col">
+      <div class="starter rv">
+        <div class="eyebrow">Make the switch</div>
+        <h2 id="starter-h">Starter Pack</h2>
+        <p>Get started faster with a straightforward, affordable ERPNext implementation for small businesses, with standard modules and expert support.</p>
+        <a class="link" href="https://frappe.io/starter-pack">Explore Starter Pack <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Final CTA -->
+  <section class="final gutter" id="switch">
+    <div class="col rv">
+      <h2>Ready to switch to ERPNext?</h2>
+      <div class="cue-row">
+        <a class="btn btn-line" href="https://frappe.io/contact-us">Contact us</a>
+        <a class="btn btn-dark" href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Start free trial <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter">
+  <div class="foot">
+    <div>
+      <a class="wordmark" href="https://frappe.io/erpnext">/erpnext</a>
+      <p class="foot-tag">World's best free and<br>open source ERP</p>
+      <div class="social">
+        <a href="https://x.com/frappetech" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.17h1.7L7.4 4.73H5.58z"/></svg></a>
+        <a href="https://www.linkedin.com/company/frappe-technologies" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13M7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0"/></svg></a>
+        <a href="https://instagram.com/frappetech" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <a href="https://github.com/frappe/erpnext" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg></a>
+      </div>
+    </div>
+    <div><h4>Services</h4><ul><li><a href="https://frappe.school/">Frappe School</a></li><li><a href="https://frappecloud.com/">Frappe Cloud</a></li><li><a href="https://frappe.io/erpnext/enterprise">Enterprise</a></li><li><a href="https://frappe.io/support">Support</a></li><li><a href="https://frappecloud.com/dashboard/signup?product=erpnext" data-trial>Sign up</a></li></ul><h4 style="margin-top:22px">Releases</h4><ul><li><a href="https://frappe.io/erpnext/version-16">Version 16</a></li><li><a href="https://frappe.io/erpnext/version-15">Version 15</a></li><li><a href="https://frappe.io/erpnext/version-14">Version 14</a></li><li><a href="https://frappe.io/erpnext/version-13">Version 13</a></li></ul></div>
+    <div><h4>Modules</h4><ul><li><a href="https://frappe.io/erpnext/open-source-accounting">Accounting</a></li><li><a href="https://frappe.io/erpnext/open-source-procurement">Procurement</a></li><li><a href="https://frappe.io/erpnext/open-source-manufacturing-erp-software">Manufacturing</a></li><li><a href="https://frappe.io/erpnext/open-source-pos-software">Point of Sale</a></li><li><a href="https://frappe.io/erpnext/open-source-project-management-software">Projects</a></li><li><a href="https://frappe.io/erpnext/open-source-asset-management-software">Assets</a></li><li><a href="https://frappe.io/erpnext/open-source-quality-management-software">Quality</a></li><li><a href="https://frappe.io/erpnext/open-source-saas-help-desk-software">Support</a></li><li><a href="https://frappe.io/erpnext/open-source-sales-invoicing">Sales</a></li><li><a href="https://frappe.io/erpnext/open-source-crm">CRM</a></li><li><a href="https://frappe.io/erpnext/open-source-inventory-management-system">Stock</a></li></ul></div>
+    <div><h4>Industries</h4><ul><li><a href="https://frappe.io/erpnext/for-manufacturing-industry">Manufacturing</a></li><li><a href="https://frappe.io/erpnext/for-trading-and-distribution">Trading &amp; Distribution</a></li><li><a href="https://frappe.io/erpnext/for-services">Professional Services</a></li><li><a href="https://frappe.io/erpnext/for-financial-services">Financial Services</a></li><li><a href="https://frappe.io/erpnext/for-EPC-engineering-contruction">Engineering (EPC)</a></li><li><a href="https://frappe.io/erpnext/for-ecommerce">E-commerce</a></li><li><a href="https://frappe.io/erpnext/for-education">Education</a></li><li><a href="https://frappe.io/erpnext/for-healthcare">Healthcare</a></li><li><a href="https://frappe.io/erpnext/for-non-profits">Non-profit</a></li><li><a href="https://frappe.io/erpnext/for-retail">Retail</a></li></ul></div>
+    <div><h4>Resources</h4><ul><li><a href="https://frappe.io/stories">Customer Stories</a></li><li><a href="https://discuss.frappe.io">Community Forum</a></li><li><a href="https://docs.frappe.io">Documentation</a></li><li><a href="https://frappe.io/erpnext/whitepapers">Whitepapers</a></li><li><a href="https://frappe.io/contact-us">Contact Us</a></li><li><a href="https://frappe.io/partners">Partners</a></li><li><a href="https://frappe.io/blog">Blog</a></li><li><a href="https://frappe.io/terms">Terms</a></li></ul></div>
+    <div><h4>Comparisons</h4><ul><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-quickbooks">vs. QuickBooks</a></li><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-salesforce">vs. Salesforce</a></li><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-zoho">vs. Zoho One</a></li><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-netsuite">vs. Netsuite</a></li><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-odoo">vs. Odoo</a></li><li><a href="https://frappe.io/erpnext/comparisons/erpnext-vs-sapb1">vs. SAP</a></li></ul></div>
+  </div>
+  <div class="foot-base">
+    <span>© Frappe. Content licensed under CC-BY-SA 3.0</span>
+    <span class="theme-sw" role="group" aria-label="Switch theme">Switch theme: <button type="button" data-theme-set="light" aria-pressed="false">Light</button>/<button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>/<button type="button" data-theme-set="auto" aria-pressed="true">Auto</button></span>
+  </div>
+</footer>
+
+<script>
+/*DESK_JS*/
+</script>
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- feature tabs + demo ---- */
+  var MODS = window.ERPData.MODULES;
+  var tabs = document.querySelector('.tabs');
+  var checks = document.getElementById('feat-checks');
+  var know = document.getElementById('feat-know');
+  var CHECK = '<svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg>';
+  tabs.innerHTML = MODS.map(function (m, i) {
+    return '<button type="button" class="tab" role="tab" id="tab-' + m.key + '" aria-selected="' + (m.key === 'sales') + '" aria-controls="demo-wrap" tabindex="' + (m.key === 'sales' ? 0 : -1) + '" data-mod="' + m.key + '">' + m.tab + '</button>';
+  }).join('');
+
+  function paintMeta(key, animate) {
+    var m = MODS.filter(function (x) { return x.key === key; })[0];
+    checks.innerHTML = m.checks.map(function (c, i) { return '<li' + (animate ? ' class="swap" style="animation-delay:' + (i * 35) + 'ms"' : '') + '>' + CHECK + c + '</li>'; }).join('');
+    know.href = m.know;
+    know.setAttribute('aria-label', 'Know more about ' + m.tab);
+    tabs.querySelectorAll('.tab').forEach(function (t) {
+      var on = t.getAttribute('data-mod') === key;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && t.scrollIntoView && tabs.scrollWidth > tabs.clientWidth) {
+        var l = t.offsetLeft - tabs.clientWidth / 2 + t.offsetWidth / 2;
+        tabs.scrollTo({ left: l, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    });
+
+  }
+
+  var demo = new window.ERPDemo(document.getElementById('erp-demo'), { id: 'main', module: 'sales', experience: true });
+  var openA = document.getElementById('demo-open'), openL = document.getElementById('demo-open-l'), note = document.getElementById('demo-note');
+  function paintOpen(key) {
+    var m = MODS.filter(function (x) { return x.key === key; })[0];
+    openA.href = 'experience-center.html#' + key;
+    openL.textContent = 'Explore ' + m.ws + ' in the Experience Center';
+    note.textContent = 'A preview of the ERPNext ' + m.ws + ' workspace on sample data. ' + demo.tours(key).length + ' guided tours inside.';
+  }
+  paintMeta('sales', false); paintOpen('sales');
+
+  tabs.addEventListener('click', function (e) {
+    var t = e.target.closest('.tab'); if (!t) return;
+    var key = t.getAttribute('data-mod');
+    demo.setModule(key, true);
+    paintMeta(key, true); paintOpen(key);
+  });
+  tabs.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    var all = [].slice.call(tabs.querySelectorAll('.tab'));
+    var i = all.indexOf(document.activeElement); if (i < 0) return;
+    var n = all[(i + (e.key === 'ArrowRight' ? 1 : -1) + all.length) % all.length];
+    n.focus(); n.click(); e.preventDefault();
+  });
+
+  /* ---- quotes carousel ---- */
+  var qs = [].slice.call(document.querySelectorAll('.quote')), dots = [].slice.call(document.querySelectorAll('.qdots i')), qi = 0;
+  function showQ(i) { qi = (i + qs.length) % qs.length; qs.forEach(function (q, k) { q.classList.toggle('is-on', k === qi); }); dots.forEach(function (d, k) { d.classList.toggle('is-on', k === qi); }); }
+  document.querySelectorAll('[data-q]').forEach(function (b) { b.addEventListener('click', function () { showQ(qi + (+b.getAttribute('data-q'))); }); });
+
+  /* ---- theme switch ---- */
+  function setTheme(v) {
+    if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v);
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === v)); });
+    try { localStorage.setItem('erpnext-theme', v); } catch (e) { }
+  }
+  document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.getAttribute('data-theme-set')); }); });
+  try { var saved = localStorage.getItem('erpnext-theme'); if (saved) setTheme(saved); } catch (e) { }
+
+  /* ---- smooth anchor scrolling with sticky offset ---- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute('href').slice(1), el = id && document.getElementById(id); if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  /* ---- scroll reveal (only for elements that start below the fold) ---- */
+  var rv = [].slice.call(document.querySelectorAll('.rv, .cue'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove('pre'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    rv.forEach(function (el) {
+      el.classList.add('rv');
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
+  /* ---- scroll-linked: demo scales up as it arrives; journey progress line ---- */
+  var wrap = document.getElementById('demo-wrap'), bar = document.querySelector('.journey'), ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight, doc = document.documentElement;
+    var p = doc.scrollHeight > vh ? (window.scrollY / (doc.scrollHeight - vh)) : 0;
+    bar.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(4));
+    if (reduce) return;
+    var top = wrap.getBoundingClientRect().top;
+    var t = Math.max(0, Math.min(1, (vh - top) / (vh * 0.7)));
+    var e = 1 - Math.pow(1 - t, 3);
+    wrap.style.transform = 'scale(' + (0.92 + 0.08 * e).toFixed(4) + ')';
+    wrap.style.opacity = (0.8 + 0.2 * e).toFixed(3);
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  window.addEventListener('resize', frame);
+  frame();
+})();
+</script>
